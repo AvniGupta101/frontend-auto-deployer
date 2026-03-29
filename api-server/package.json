@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-ecs": "^3.1019.0",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "ioredis": "^5.10.1",
+    "random-word-slugs": "^0.1.7",
+    "socket.io": "^4.8.3",
+    "socketio": "^1.0.0"
+  }
+}
