@@ -6,9 +6,11 @@ const mime = require('mime-types')
 const Redis = require('ioredis')
 
 
-require('dotenv').config();
-const publisher = new Redis('process.env.REDIS_URL')
 
+const publisher = new Redis(process.env.REDIS_URL)
+console.log("AWS KEY:", process.env.AWS_ACCESS_KEY_ID)
+console.log("AWS SECRET:", process.env.AWS_SECRET_ACCESS_KEY)
+console.log("REDIS:", process.env.REDIS_URL)
 
 
 
@@ -62,11 +64,12 @@ async function init() {
             publishLog(`uploading ${file}`)
 
             const command = new PutObjectCommand({
-                Bucket: 'vercel-project-avni',
-                Key: `__outputs/${PROJECT_ID}/${file}`,
-                Body: fs.createReadStream(filePath),
-                ContentType: mime.lookup(filePath)
-            })
+    Bucket: 'vercel-project-avni',
+    Key: `__outputs/${PROJECT_ID}/${file}`,
+    Body: fs.createReadStream(filePath),
+    ContentType: mime.lookup(filePath),
+
+})
 
             await s3Client.send(command)
             publishLog(`uploaded ${file}`)
@@ -78,3 +81,4 @@ async function init() {
 }
 
 init()
+//aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 088167543829.dkr.ecr.eu-north-1.amazonaws.com

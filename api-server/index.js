@@ -12,6 +12,8 @@ const Redis = require('ioredis')
 const app = express()
 const PORT = 9000
 console.log("Redis URL:", process.env.REDIS_URL)
+console.log("AWS KEY:", process.env.AWS_ACCESS_KEY_ID)
+console.log("AWS SECRET:", process.env.AWS_SECRET_ACCESS_KEY)
 // 🔥 Create HTTP server
 const server = http.createServer(app)
 
@@ -35,7 +37,7 @@ const ecsClient = new ECSClient({
 
 const config = {
     CLUSTER: 'arn:aws:ecs:eu-north-1:088167543829:cluster/builder-cluster-vercel',
-    TASK: 'arn:aws:ecs:eu-north-1:088167543829:task-definition/builder-task-2'
+    TASK: 'builder-task-3'
 }
 
 
